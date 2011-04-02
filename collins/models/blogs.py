@@ -6,5 +6,6 @@ class Blog(models.Model):
 	description = models.TextField(blank=True, null=True)
 	admins = models.ManyToManyField(User)
 	date_created = models.DateTimeField(auto_now_add=True)
+	custom_domain = models.URLField(blank=True, null=True)
 	class Meta:
 		app_label = 'collins'

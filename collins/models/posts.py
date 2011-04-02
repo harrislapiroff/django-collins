@@ -9,6 +9,11 @@ class PostBase(models.Model):
 	slug = models.SlugField()
 	blog = models.ForeignKey(Blog)
 	author = models.ForeignKey(User)
+	
+	@property
+	def published(self):
+		return self.time_posted
+	
 	class Meta:
 		abstract = True
 		app_label = 'collins'
