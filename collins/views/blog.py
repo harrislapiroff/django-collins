@@ -1,5 +1,5 @@
 def blog(request, blog_slug=None):
 	pass
 	
-def post(request, blog_slug=None, post_pk):
+def post(request, post_pk, blog_slug=None):
 	pass
