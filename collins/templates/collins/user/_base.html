@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>
+		{% block title %}
+			{% block page_title %}{% endblock %} | {% block site_title %}Collins{% endblock %}
+		{% endblock %}
+		</title>
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}collins/styles/stylesheets/screen.css" media="screen projection" />
+	</head>
+	<body class="{% block bodyclasses %}{% endblock %}">
+		<div id="container">
+			<header id="siteHead">
+				<h1>Collins</h1>
+			</header>
+			<div id="content">
+				{% block content %}
+				{% endblock %}
+			</div>
+			<footer>
+				Powered by <a href="djangoproject.com">Django</a> <span class="amp">&amp;</span> <a href="https://github.com/lapilofu/django-collins">Collins</a>.
+			</footer>
+		</div>
+	</body>
+</html>

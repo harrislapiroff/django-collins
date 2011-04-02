@@ -1,0 +1,12 @@
+{% extends "collins/user/_base.html" %}
+
+{% block page_title %}Login{% endblock %}
+
+{% block content %}
+	<form method="post" action=".">
+		<input type="hidden" name="next" value="{% url dashboard %}">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button>Login</button>
+	</form>
+{% endblock %}
