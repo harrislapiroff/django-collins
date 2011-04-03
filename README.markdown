@@ -1,8 +1,10 @@
+# Django Collins
+
 Collins is a simple blogging application for Django, inspired by [Tumblr](http://tumblr.com/), [Projectionist](http://project.ioni.st/), &c.
 
 Doesn't really do much yet. Still in the early stages of development.
 
-Prerequisites:
+## Prerequisites
 
 * [Python](http://python.org/) (May well work with older versions, but is developed against 2.6.1)
 * [Django 1.3+](http://www.djangoproject.com/)

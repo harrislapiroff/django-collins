@@ -9,7 +9,7 @@ urlpatterns += patterns('django.contrib.auth.views',
 	url(r'^login/$', 'login', {
 		'template_name': 'collins/user/login.html',
 	}, name=u'login'),
-	url(r'^logout/$', 'logout'),
+	url(r'^logout/$', 'logout_then_login'),
 )
 
 urlpatterns += patterns('collins.views.user',
