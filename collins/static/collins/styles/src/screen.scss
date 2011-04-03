@@ -3,10 +3,13 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
-@import "compass/reset";
+@import "compass/reset",
+		"compass/css3/box-shadow",
+		"compass/css3/border-radius",
+		"compass/css3/text-shadow";
 
 $font-family: Helvetica, Arial, sans-serif;
-$background: #CC9900;
+$background: #C75407;
 
 html{
 	background:$background;
@@ -27,7 +30,7 @@ body{
 	color:#FFF;
 	font-size:80px;
 	color:#FFF;
-	text-shadow:0 1px rgba(0,0,0,.35);
+	text-shadow:0 1px rgba(0,0,0,.15);
 	text-align:center;
 }
 #container{
@@ -39,5 +42,5 @@ body{
 	background:#FFF;
 	padding:20px;
 	margin:20px 0;
-	box-shadow:0 0 20px rgba(0,0,0,.15);
+	@include box-shadow(rgba(0,0,0,.15), 0, 0, 20px, 0, false)
 }

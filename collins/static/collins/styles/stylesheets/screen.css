@@ -62,43 +62,46 @@ a img {
   border: none;
 }
 
-/* line 11, ../src/screen.scss */
+/* line 14, ../src/screen.scss */
 html {
-  background: #cc9900;
+  background: #c75407;
   height: 100%;
 }
 
-/* line 16, ../src/screen.scss */
+/* line 19, ../src/screen.scss */
 body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 15px;
-  background: #cc9900;
-  background: #cc9900 -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 850, from(#ffd966), to(#cc9900)) no-repeat fixed;
+  background: #c75407;
+  background: #c75407 -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 850, from(#faa66d), to(#c75407)) no-repeat fixed;
   padding: 40px;
   min-height: 100%;
 }
 
-/* line 25, ../src/screen.scss */
+/* line 28, ../src/screen.scss */
 #siteHead {
   font-weight: bold;
   color: #FFF;
   font-size: 80px;
   color: #FFF;
-  text-shadow: 0 1px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 1px rgba(0, 0, 0, 0.15);
   text-align: center;
 }
 
-/* line 33, ../src/screen.scss */
+/* line 36, ../src/screen.scss */
 #container {
   width: 800px;
   margin: 0 auto;
 }
 
-/* line 37, ../src/screen.scss */
+/* line 40, ../src/screen.scss */
 #content {
   border-radius: 20px;
   background: #FFF;
   padding: 20px;
   margin: 20px 0;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: rgba(0, 0, 0, 0.15) 0 0 20px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0 0 20px 0;
+  -o-box-shadow: rgba(0, 0, 0, 0.15) 0 0 20px 0;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 0 20px 0;
 }
