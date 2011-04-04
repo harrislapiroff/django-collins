@@ -1,6 +1,7 @@
 from models import *
 from django.contrib import admin
 from django.contrib.contenttypes import generic
+from django.contrib.sites.models import Site
 
 class PostShellInline(generic.GenericStackedInline):
 	model = PostShell
@@ -13,8 +14,17 @@ class PostShellInline(generic.GenericStackedInline):
 
 class PostAdmin(admin.ModelAdmin):
 	inlines = [PostShellInline]
+
+class CustomDomainsInline(admin.TabularInline):
+	model = Site
+	extra = 1
+	verbose_name = 'Custom Domain'
+	verbose_name_plural = 'Custom Domains'
 	
-admin.site.register(Blog)
+class CustomDomainAdmin(admin.ModelAdmin):
+	inlines = [CustomDomainsInline]
+	
+admin.site.register(Blog, CustomDomainAdmin)
 admin.site.register(TextPost, PostAdmin)
 admin.site.register(ImagePost, PostAdmin)
 admin.site.register(LinkPost, PostAdmin)

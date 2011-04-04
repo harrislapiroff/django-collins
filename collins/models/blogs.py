@@ -7,6 +7,11 @@ class Blog(models.Model):
 	description = models.TextField(blank=True, null=True)
 	admins = models.ManyToManyField(User)
 	date_created = models.DateTimeField(auto_now_add=True)
-	custom_domain = models.OneToOneField(Site, blank=True, null=True, related_name='Primary Blog')
+	
+	def __unicode__(self):
+		self.name
+	
 	class Meta:
 		app_label = 'collins'
+		
+models.ForeignKey(Blog, blank=True, null=True, related_name='Custom Domain').contribute_to_class(Site, 'primary_blog')
