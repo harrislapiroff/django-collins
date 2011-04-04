@@ -13,10 +13,10 @@ urlpatterns += patterns('django.contrib.auth.views',
 )
 
 urlpatterns += patterns('collins.views.user',
-	url(r'^register/$', 'register'),
-	url(r'^dashboard/$', 'dashboard', name=u'dashboard'),
-	url(r'^edit/(?P<post_pk>[0-9]*)/$', 'edit_post'),
-	url(r'^settings/(?P<blog_slug>[\w-]*)/$', 'edit_blog'),
+	url(r'^register/$', 'register', name = u'register'),
+	url(r'^dashboard/$', 'dashboard', name = u'dashboard'),
+	url(r'^edit/(?P<post_pk>[0-9]*)/$', 'edit_post', name = u'edit_post'),
+	url(r'^settings/(?P<blog_slug>[\w-]*)/$', 'edit_blog', name = u'edit_blog'),
 	
 ) 
 

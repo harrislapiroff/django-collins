@@ -2,6 +2,7 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+@import "http://fonts.googleapis.com/css?family=Expletus+Sans";
 /* line 14, ../../../../../../../.gem/ruby/1.8/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -62,36 +63,98 @@ a img {
   border: none;
 }
 
-/* line 14, ../src/screen.scss */
+/* line 2, ../src/_userActions.scss */
+#userActions {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+/* line 7, ../src/_userActions.scss */
+#userActions ul {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid #666;
+  display: table;
+  overflow: hidden;
+  -moz-box-shadow: black 0 0 1px 1px;
+  -webkit-box-shadow: black 0 0 1px 1px;
+  -o-box-shadow: black 0 0 1px 1px;
+  box-shadow: black 0 0 1px 1px;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #333333), color-stop(100%, #111111));
+  background-image: -moz-linear-gradient(top, #333333 0%, #111111 100%);
+  background-image: linear-gradient(top, #333333 0%, #111111 100%);
+}
+/* line 15, ../src/_userActions.scss */
+#userActions li {
+  display: table-cell;
+  overflow: hidden;
+  border-right: 1px solid #000;
+  border-left: 1px solid #666;
+}
+/* line 20, ../src/_userActions.scss */
+#userActions li:first-child {
+  border-left-width: 0;
+}
+/* line 23, ../src/_userActions.scss */
+#userActions li:last-child {
+  border-right-width: 0;
+}
+/* line 26, ../src/_userActions.scss */
+#userActions li a {
+  display: block;
+  padding: 12px 20px 7px 20px;
+  line-height: 25px;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.35);
+  color: #CCC;
+  text-decoration: none;
+  font-family: "Expletus Sans", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  -webkit-font-smoothing: antialiased;
+}
+/* line 38, ../src/_userActions.scss */
+#userActions li a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFF;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+/* line 13, ../src/screen.scss */
 html {
   background: #c75407;
   height: 100%;
 }
 
-/* line 19, ../src/screen.scss */
+/* line 18, ../src/screen.scss */
 body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 15px;
   background: #c75407;
-  background: #c75407 -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 850, from(#faa66d), to(#c75407)) no-repeat fixed;
+  background: #c75407 -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 850, from(#ffc95c), to(#c75407)) no-repeat fixed;
   padding: 40px;
   min-height: 100%;
 }
 
-/* line 28, ../src/screen.scss */
+/* line 27, ../src/screen.scss */
 #siteHead {
-  font-weight: bold;
+  font-family: "Expletus Sans", Helvetica, Arial, sans-serif;
   color: #FFF;
-  font-size: 80px;
+  font-size: 60px;
   color: #FFF;
   text-shadow: 0 1px rgba(0, 0, 0, 0.15);
-  text-align: center;
+  text-align: left;
 }
 
-/* line 36, ../src/screen.scss */
+/* line 35, ../src/screen.scss */
 #container {
   width: 800px;
   margin: 0 auto;
+  position: relative;
 }
 
 /* line 40, ../src/screen.scss */

@@ -14,6 +14,17 @@
 			<header id="siteHead">
 				<h1>Collins</h1>
 			</header>
+			<nav id="userActions">
+				{% if user.is_authenticated %}
+				    <p>Hi, {{ user.username }}.</p>
+				{% else %}
+				<ul>
+					<li><a href="{% url login %}">Login</a></li>
+					{# TODO: don't show a registration link if settings.ALLOW_USER_REGISTRATION is false #}
+					<li><a href="{% url register %}">Register</a></li>
+				</ul>
+				{% endif %}
+			</nav>
 			<div id="content">
 				{% block content %}
 				{% endblock %}

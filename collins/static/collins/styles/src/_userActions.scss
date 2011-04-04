@@ -1,0 +1,45 @@
+
+#userActions{
+	$radius: 10px;
+	position:absolute;
+	right:0;
+	top:0;
+	ul{
+		@include border-radius($radius);
+		border:1px solid #666;
+		display:table;
+		overflow:hidden;
+		@include box-shadow(#000, 0, 0, 1px, 1px);
+		@include linear-gradient(color-stops( #333, #111 ), top);
+	}
+	li{
+		display:table-cell;
+		overflow:hidden;
+		border-right:1px solid #000;
+		border-left:1px solid #666;
+		&:first-child{
+			border-left-width:0;
+		}
+		&:last-child{
+			border-right-width:0;
+		}
+		a{
+			display:block;
+			padding:12px 20px 7px 20px;
+			line-height:25px;
+			text-shadow:-1px -1px 0 rgba(0,0,0,.35);
+			color:#CCC;
+			text-decoration:none;
+			font-family:$heading-font;
+			font-size:15px;
+			text-transform:uppercase;
+			letter-spacing:2px;
+			-webkit-font-smoothing:antialiased;
+			&:hover{
+				background: rgba(255,255,255,.1);
+				color:#FFF;
+				text-shadow:0 0 2px rgba(255,255,255,.3);
+			}
+		}
+	}
+}

@@ -3,44 +3,44 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
-@import "compass/reset",
-		"compass/css3/box-shadow",
-		"compass/css3/border-radius",
-		"compass/css3/text-shadow";
+@import 
+		"http://fonts.googleapis.com/css?family=Expletus+Sans",
+		"base",
+		"userActions";
 
-$font-family: Helvetica, Arial, sans-serif;
-$background: #C75407;
+$background: $sitebackground;
 
 html{
-	background:$background;
-	height:100%;
+	background: $background;
+	height: 100%;
 }
 
 body{
 	font-family: $font-family;
-	font-size:15px;
-	background:$background;
-	background:$background -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 850, from(lighten($background, 30%)), to($background) ) no-repeat fixed;
-	padding:40px;
-	min-height:100%;
+	font-size: 15px;
+	background: $background;
+	background: $background -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 850, from($background/2 + $background-accent/2 + #222), to($background) ) no-repeat fixed;
+	padding: 40px;
+	min-height: 100%;
 }
 
 #siteHead{
-	font-weight:bold;
-	color:#FFF;
-	font-size:80px;
-	color:#FFF;
-	text-shadow:0 1px rgba(0,0,0,.15);
-	text-align:center;
+	font-family: $heading-font;
+	color: #FFF;
+	font-size: 60px;
+	color: #FFF;
+	text-shadow: 0 1px rgba(0,0,0,.15);
+	text-align: left;
 }
 #container{
-	width:800px;
-	margin:0 auto;
+	width: 800px;
+	margin: 0 auto;
+	position: relative;
 }
 #content{
-	border-radius:20px;
-	background:#FFF;
-	padding:20px;
-	margin:20px 0;
+	border-radius: 20px;
+	background: #FFF;
+	padding: 20px;
+	margin: 20px 0;
 	@include box-shadow(rgba(0,0,0,.15), 0, 0, 20px, 0, false)
 }
