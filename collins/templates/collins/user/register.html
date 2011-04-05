@@ -1,0 +1,13 @@
+{% extends "collins/user/_base.html" %}
+
+{% block page_title %}Register{% endblock %}
+
+{% block bodyclasses %}register{% endblock %}
+
+{% block content %}
+	<form method="post" action=".">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button>Register</button>
+	</form>
+{% endblock %}

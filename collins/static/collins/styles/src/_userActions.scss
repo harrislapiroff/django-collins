@@ -16,7 +16,7 @@
 		display:table-cell;
 		overflow:hidden;
 		border-right:1px solid #000;
-		border-left:1px solid #666;
+		border-left:1px solid #444;
 		&:first-child{
 			border-left-width:0;
 			a, b{
@@ -50,6 +50,9 @@
 				background: rgba(255,255,255,.1);
 				color:#FFF;
 				text-shadow:0 0 2px rgba(255,255,255,.3);
+			}
+			&:active{
+				@include linear-gradient(color-stops(#111 0%, #222 30%, #333 100%));
 			}
 		}
 	}
