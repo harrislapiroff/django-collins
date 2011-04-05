@@ -6,6 +6,7 @@
 @import 
 		"http://fonts.googleapis.com/css?family=Expletus+Sans",
 		"base",
+		"generalities",
 		"userActions";
 
 $background: $sitebackground;
@@ -16,10 +17,12 @@ html{
 }
 
 body{
+	$inside: $background/2 + $background-accent/2 + #222;
+	$outside: $background;
 	font-family: $font-family;
 	font-size: 15px;
 	background: $background;
-	background: $background -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 850, from($background/2 + $background-accent/2 + #222), to($background) ) no-repeat fixed;
+	@include radial-gradient(color-stops($inside, $outside 850px));
 	padding: 40px;
 	min-height: 100%;
 }
@@ -38,7 +41,7 @@ body{
 	position: relative;
 }
 #content{
-	border-radius: 20px;
+	@include border-radius(20px);
 	background: #FFF;
 	padding: 20px;
 	margin: 20px 0;

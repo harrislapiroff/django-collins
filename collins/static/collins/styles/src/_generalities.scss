@@ -1,0 +1,8 @@
+::selection{
+	background:adjust_hue(saturate($sitebackground, 100%), 60deg);
+	color:#FFF;
+}
+::-moz-selection{
+	background:adjust_hue(saturate($sitebackground, 100%), 60deg);
+	color:#FFF;
+}
