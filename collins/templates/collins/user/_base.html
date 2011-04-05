@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html class="django-collins">
 	<head>
 		<title>
 		{% block title %}
@@ -16,7 +16,11 @@
 			</header>
 			<nav id="userActions">
 				{% if user.is_authenticated %}
-				    <p>Hi, {{ user.username }}.</p>
+				<ul>
+					<li><b>Hello, {{ request.user.username }}!</b></li>
+					<li><a href="{# TODO: implement #}">Settings</a></li>
+					<li><a href="{% url logout %}">Logout</a></li>
+				</ul>
 				{% else %}
 				<ul>
 					<li><a href="{% url login %}">Login</a></li>

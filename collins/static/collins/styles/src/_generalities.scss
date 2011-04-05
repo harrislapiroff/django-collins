@@ -1,8 +1,23 @@
+$selectionbg: adjust_hue(saturate($sitebackground, 100%), 60deg);
+$selectionfore: adjust_hue(saturate($sitebackground, 100%), 60deg);
+
 ::selection{
-	background:adjust_hue(saturate($sitebackground, 100%), 60deg);
-	color:#FFF;
+	background:$selectionbg;
+	color:$selectionfore;
 }
 ::-moz-selection{
-	background:adjust_hue(saturate($sitebackground, 100%), 60deg);
-	color:#FFF;
+	background:$selectionbg;
+	color:$selectionfore;
+}
+
+a{
+	text-decoration:none;
+	color:$selectionbg;
+}
+
+b{
+	font-weight:normal;
+}
+i{
+	font-style:normal;
 }

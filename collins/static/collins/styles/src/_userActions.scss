@@ -19,11 +19,17 @@
 		border-left:1px solid #666;
 		&:first-child{
 			border-left-width:0;
+			a, b{
+				@include border-radius($radius 0 0 $radius);
+			}
 		}
 		&:last-child{
 			border-right-width:0;
+			a, b{
+				@include border-radius(0 $radius $radius 0);
+			}
 		}
-		a{
+		a, b{
 			display:block;
 			padding:12px 20px 7px 20px;
 			line-height:25px;
@@ -32,9 +38,14 @@
 			text-decoration:none;
 			font-family:$heading-font;
 			font-size:15px;
+			-webkit-font-smoothing:antialiased;
+		}
+		b{
+			background:#000;
+		}
+		a{
 			text-transform:uppercase;
 			letter-spacing:2px;
-			-webkit-font-smoothing:antialiased;
 			&:hover{
 				background: rgba(255,255,255,.1);
 				color:#FFF;

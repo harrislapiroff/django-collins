@@ -8,20 +8,18 @@
 		"base",
 		"generalities",
 		"userActions";
-
-$background: $sitebackground;
-
+		
 html{
-	background: $background;
+	background: $sitebackground;
 	height: 100%;
 }
 
 body{
-	$inside: $background/2 + $background-accent/2 + #222;
-	$outside: $background;
+	$inside: $sitebackground/2 + $background-accent/2 + #222;
+	$outside: $sitebackground;
 	font-family: $font-family;
 	font-size: 15px;
-	background: $background;
+	background: $sitebackground;
 	@include radial-gradient(color-stops($inside, $outside 850px));
 	padding: 40px;
 	min-height: 100%;

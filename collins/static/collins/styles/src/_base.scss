@@ -5,6 +5,8 @@
 		"compass/css3/text-shadow",
 		"compass/css3/gradient";
 
+@include reset-html5;
+
 $font-family: Helvetica, Arial, sans-serif;
 $heading-font: "Expletus Sans", $font-family;
 $sitebackground: #C75407;

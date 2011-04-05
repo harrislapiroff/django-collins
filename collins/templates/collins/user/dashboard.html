@@ -1,0 +1,20 @@
+{% extends "collins/user/_base.html" %}
+
+{% block page_title %}Login{% endblock %}
+
+{% block bodyclasses %}dashboard{% endblock %}
+
+{% block content %}
+	{% if blogs.count > 0 %}
+		<div id="yourBlogs" class="blogList">
+			<ul class="blogSelector">
+				{% for blog in blogs %}
+					<li><a href="{% url manage_blog_posts blog_slug=blog.slug %}">{{ blog.name }}</a></li>
+				{% endfor %}
+			</ul>	
+			<a href="{% url create_blog %}"><span class="plus">+</span> New Blog</a>
+		</div>
+	{% else %}
+		<p>You have no blogs yet! Why not <a href="{% url create_blog %}">create one</a>?</p>
+	{% endif %}
+{% endblock %}

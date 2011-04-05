@@ -4,8 +4,9 @@ from django.contrib.sites.models import Site
 
 class Blog(models.Model):
 	name = models.CharField(max_length=50)
+	slug = models.SlugField(max_length=50, unique=True)
 	description = models.TextField(blank=True, null=True)
-	admins = models.ManyToManyField(User)
+	admins = models.ManyToManyField(User, related_name='blogs')
 	date_created = models.DateTimeField(auto_now_add=True)
 	
 	def __unicode__(self):
