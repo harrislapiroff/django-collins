@@ -19,7 +19,7 @@ urlpatterns += patterns('collins.views.user',
 	url(r'^post/$', 'create_post', name = u'create_post'),
 	url(r'^edit/(?P<post_pk>[0-9]*)/$', 'edit_post', name = u'edit_post'),
 	url(r'^settings/(?P<blog_slug>[\w-]*)/$', 'edit_blog', name = u'edit_blog'),
-	url(r'^blog/(?P<blog_slug>[\w-]*)/$$', 'manage_blog_posts', name = u'manage_blog'),
+	url(r'^blog/(?P<blog_slug>[\w-]*)/$$', 'manage_blog_posts', name = u'manage_blog_posts'),
 	
 ) 
 

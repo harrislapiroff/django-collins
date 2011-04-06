@@ -6,6 +6,7 @@ from django.contrib.auth import login, authenticate
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from collins.models import Blog, User
+from collins.forms import CreateBlogForm
 
 def register(request):
 	if request.user.is_authenticated(): # if the user is already logged in
@@ -43,17 +44,30 @@ def edit_post(request, post_pk):
 
 @login_required
 def create_blog(request):
-	# TODO: implement
-	pass
+	# if the form has been submitted
+	if request.method == 'POST':
+		form = CreateBlogForm(request.POST)
+		if form.is_valid():
+			# save the form as an object
+			blog = form.save()
+			# add the current user as an admin
+			blog.admins.add(request.user)
+			# save it again!
+			blog.save()
+			# then redirect to the appropriate manage blog posts page
+			return HttpResponseRedirect(reverse('manage_blog_posts', kwargs = {'blog_slug': blog.slug}))
+		else:
+			return render_to_response('collins/user/form.html', {'form': form, 'title': "Create a blog", 'button_text': "Create Blog"}, context_instance=RequestContext(request))
+	# if the form has not been submitted
+	else:
+		form = CreateBlogForm()
+		return render_to_response('collins/user/form.html', {'form': form, 'title': "Create a blog", 'button_text': "Create Blog"}, context_instance=RequestContext(request))
+
 
 @login_required
 def edit_blog(request, blog_slug):
-	# TODO: implement
-	return render_to_response('collins/user/home.html', {}, context_instance=RequestContext(request))
+	pass
 
 @login_required
 def manage_blog_posts(request, blog_slug):
-	# TODO: implement
-	# 1 check if they own the blog
-	# 2 get the posts and render them with controls
-	pass
+	profile = request.user.get_profile()
