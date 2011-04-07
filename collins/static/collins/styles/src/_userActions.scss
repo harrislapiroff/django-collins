@@ -46,6 +46,7 @@
 		a{
 			text-transform:uppercase;
 			letter-spacing:2px;
+			@include transition(all, .1s, linear);
 			&:hover{
 				background: rgba(255,255,255,.1);
 				color:#FFF;

@@ -2,7 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 from django.core.urlresolvers import reverse
 
 urlpatterns = patterns('collins.views',
-	url(r'^$', 'home'),
+	url(r'^$', 'home', name = u'home'),
 )
 
 urlpatterns += patterns('django.contrib.auth.views',
