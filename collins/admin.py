@@ -24,6 +24,7 @@ class CustomDomainsInline(admin.TabularInline):
 class CustomDomainAdmin(admin.ModelAdmin):
 	inlines = [CustomDomainsInline]
 	
+
 admin.site.register(Blog, CustomDomainAdmin)
 admin.site.register(TextPost, PostAdmin)
 admin.site.register(ImagePost, PostAdmin)
@@ -34,3 +35,4 @@ admin.site.register(VideoExternalPost, PostAdmin)
 admin.site.register(AudioPost, PostAdmin)
 admin.site.register(CodePost, PostAdmin)
 admin.site.register(PostShell)
+admin.site.register(UserProfile)
