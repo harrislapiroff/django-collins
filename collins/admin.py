@@ -23,9 +23,11 @@ class CustomDomainsInline(admin.TabularInline):
 	
 class CustomDomainAdmin(admin.ModelAdmin):
 	inlines = [CustomDomainsInline]
-	
 
-admin.site.register(Blog, CustomDomainAdmin)
+class BlogAdmin(CustomDomainAdmin):
+	filter_horizontal = ['permitted_post_types', 'admins']
+
+admin.site.register(Blog, BlogAdmin)
 admin.site.register(TextPost, PostAdmin)
 admin.site.register(ImagePost, PostAdmin)
 admin.site.register(LinkPost, PostAdmin)
