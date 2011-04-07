@@ -33,15 +33,12 @@ def dashboard(request):
 	current_blog = profile.last_managed_blog if profile.last_managed_blog else user_blogs[0] if user_blogs.count() != 0 else None
 	cx = {
 		'blogs': user_blogs,
-		'current_blog': {
-			'name': current_blog.name,
-			'posts': current_blog.posts.all()
-		}
+		'current_blog': current_blog
 	}
 	return render_to_response('collins/user/dashboard.html', cx, context_instance=RequestContext(request))
 
 @login_required(login_url=COLLINS_LOGIN_URL)
-def create_post(request, post_pk):
+def create_post(request, blog_slug, post_type):
 	# TODO: implement
 	return render_to_response('collins/user/home.html', {}, context_instance=RequestContext(request))
 

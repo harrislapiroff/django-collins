@@ -12,6 +12,9 @@ class Blog(models.Model):
 	# TODO: limit this to only ContentTypes which are subclasses of PostBase
 	permitted_post_types = models.ManyToManyField(ContentType)
 	
+	def get_posts(self):
+		return self.posts.objects.all()
+	
 	def __unicode__(self):
 		return self.name
 	

@@ -16,11 +16,10 @@ urlpatterns += patterns('collins.views.user',
 	url(r'^register/$', 'register', name = u'register'),
 	url(r'^dashboard/$', 'dashboard', name = u'dashboard'),
 	url(r'^create/$', 'create_blog', name = u'create_blog'),
-	url(r'^post/$', 'create_post', name = u'create_post'),
+	url(r'^post/(?P<blog_slug>[\w-]*)/(?P<post_type>[\w_-]*)/$', 'create_post', name = u'create_post'),
 	url(r'^edit/(?P<post_pk>[0-9]*)/$', 'edit_post', name = u'edit_post'),
 	url(r'^settings/(?P<blog_slug>[\w-]*)/$', 'edit_blog', name = u'edit_blog'),
-	url(r'^blog/(?P<blog_slug>[\w-]*)/$$', 'manage_blog_posts', name = u'manage_blog_posts'),
-	
+	url(r'^blog/(?P<blog_slug>[\w-]*)/$', 'manage_blog_posts', name = u'manage_blog_posts'),
 ) 
 
 urlpatterns += patterns('collins.views.blog',

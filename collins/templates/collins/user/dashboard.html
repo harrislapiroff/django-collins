@@ -8,10 +8,18 @@
 	<div id="activeBlog">
 		<header>
 			<h1>{{ current_blog.name }}</h1>
-		</header>
+		</header>	
+		<nav class="newPostBar">
+			Create new:
+			<ul>
+				{% for post_type in current_blog.permitted_post_types.all %}
+				<li><a href="{% url create_post blog_slug=current_blog.slug post_type=post_type.model %}">{{ post_type.name }}</a></li>
+				{% endfor %}
+			</ul>
+		</nav>
 		<div class="postList">
-			{% if current_blog.posts.count != 0 %}
-				{% for post in current_blog.posts %}
+			{% if current_blog.get_posts.count != 0 %}
+				{% for post in current_blog.get_posts %}
 					<article>
 						<header>
 							<h1>{{ post.data.title }}</h1>
@@ -29,7 +37,14 @@
 		<div id="yourBlogs" class="blogList">
 			<ul class="blogSelector">
 				{% for blog in blogs %}
-					<li><a href="{% url manage_blog_posts blog_slug=blog.slug %}">{{ blog.name }}</a></li>
+					<li{% if blog.pk == current_blog.pk %} class="active"{% endif %}>
+						{% if blog.pk != current_blog.pk %}
+						<a href="{% url manage_blog_posts blog_slug=blog.slug %}">{{ blog.name }}</a>
+						{% else %}
+						<b>{{ current_blog.name }}</b>
+						{% endif %}
+						<a class="settingsLink" href="{% url edit_blog blog_slug=blog.slug %}">(settings)</a>
+					</li>
 				{% endfor %}
 			</ul>	
 			<a href="{% url create_blog %}"><span class="plus">+</span> New Blog</a>
