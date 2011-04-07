@@ -24,8 +24,9 @@
 				{% else %}
 				<ul>
 					<li><a href="{% url login %}">Login</a></li>
-					{# TODO: don't show a registration link if settings.ALLOW_USER_REGISTRATION is false #}
+					{% if settings.COLLINS_USER_REGISTRATION %}
 					<li><a href="{% url register %}">Register</a></li>
+					{% endif %}
 				</ul>
 				{% endif %}
 			</nav>

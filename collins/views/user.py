@@ -4,11 +4,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.template import RequestContext
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from collins.models import Blog, User
 from collins.forms import CreateBlogForm
+from collins.settings import COLLINS_USER_REGISTRATION
 
 def register(request):
+	if not COLLINS_USER_REGISTRATION:
+		return HttpResponseForbidden(u'User registration is not permitted on this site because <code>settings.COLLINS_USER_REGISTRATION</code> is false.')
 	if request.user.is_authenticated(): # if the user is already logged in
 		return HttpResponseRedirect(reverse('dashboard'))
 	elif not request.method == 'POST': # if the form has not been submitted yet
@@ -25,9 +28,12 @@ def register(request):
 
 @login_required
 def dashboard(request):
+	profile = request.user.get_profile()
 	user_blogs = request.user.blogs.all()
+	current_blog = profile.last_managed_blog if profile.last_managed_blog else user_blogs[0] if user_blogs.count() != 0 else None
 	cx = {
-		'blogs': user_blogs
+		'blogs': user_blogs,
+		'current_blog': current_blog
 	}
 	return render_to_response('collins/user/dashboard.html', cx, context_instance=RequestContext(request))
 
@@ -70,6 +76,10 @@ def edit_blog(request, blog_slug):
 
 @login_required
 def manage_blog_posts(request, blog_slug):
+	"""
+	Changes the current user's profile.last_managed blog to the blog_slug
+	requested and redirects back to the dashboard.
+	"""
 	profile = request.user.get_profile()
 	blog = Blog.objects.filter(slug__exact=blog_slug)[0]
 	profile.last_managed_blog = blog
