@@ -7,12 +7,18 @@ from django.contrib.contenttypes import generic
 class PostShell(models.Model):
 	time_posted = models.DateTimeField(auto_now_add=True)
 	slug = models.SlugField(unique=True)
-	blog = models.ForeignKey(Blog)
+	blog = models.ForeignKey(Blog, related_name='posts')
 	draft = models.BooleanField(verbose_name="Draft?")
 	author = models.ForeignKey(User)
 	post_content_type = models.ForeignKey(ContentType)
 	post_content_id = models.IntegerField()
 	post_content_object = generic.GenericForeignKey('post_content_type', 'post_content_id')
+	
+	def typename(self):
+		return type(self).__name__
+
+	def data(self):
+		return self.post_content_object
 
 	def __unicode__(self):
 		return u"%s (%s)" % (
