@@ -71,3 +71,7 @@ def edit_blog(request, blog_slug):
 @login_required
 def manage_blog_posts(request, blog_slug):
 	profile = request.user.get_profile()
+	blog = Blog.objects.filter(slug__exact=blog_slug)[0]
+	profile.last_managed_blog = blog
+	profile.save()
+	return HttpResponseRedirect(reverse('dashboard'))
