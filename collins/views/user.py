@@ -7,7 +7,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from collins.models import Blog, User
 from collins.forms import CreateBlogForm
-from collins.settings import COLLINS_USER_REGISTRATION
+from collins.settings import COLLINS_USER_REGISTRATION, COLLINS_LOGIN_URL
 
 def register(request):
 	if not COLLINS_USER_REGISTRATION:
@@ -26,7 +26,7 @@ def register(request):
 			login(request, user)
 			return HttpResponseRedirect(reverse('create_blog'))
 
-@login_required
+@login_required(login_url=COLLINS_LOGIN_URL)
 def dashboard(request):
 	profile = request.user.get_profile()
 	user_blogs = request.user.blogs.all()
@@ -37,18 +37,18 @@ def dashboard(request):
 	}
 	return render_to_response('collins/user/dashboard.html', cx, context_instance=RequestContext(request))
 
-@login_required
+@login_required(login_url=COLLINS_LOGIN_URL)
 def create_post(request, post_pk):
 	# TODO: implement
 	return render_to_response('collins/user/home.html', {}, context_instance=RequestContext(request))
 
 
-@login_required
+@login_required(login_url=COLLINS_LOGIN_URL)
 def edit_post(request, post_pk):
 	# TODO: implement
 	return render_to_response('collins/user/home.html', {}, context_instance=RequestContext(request))
 
-@login_required
+@login_required(login_url=COLLINS_LOGIN_URL)
 def create_blog(request):
 	# if the form has been submitted
 	if request.method == 'POST':
@@ -70,11 +70,11 @@ def create_blog(request):
 		return render_to_response('collins/user/form.html', {'form': form, 'title': "Create a blog", 'button_text': "Create Blog"}, context_instance=RequestContext(request))
 
 
-@login_required
+@login_required(login_url=COLLINS_LOGIN_URL)
 def edit_blog(request, blog_slug):
 	pass
 
-@login_required
+@login_required(login_url=COLLINS_LOGIN_URL)
 def manage_blog_posts(request, blog_slug):
 	"""
 	Changes the current user's profile.last_managed blog to the blog_slug
