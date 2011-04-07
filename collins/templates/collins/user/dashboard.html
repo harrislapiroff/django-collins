@@ -10,7 +10,7 @@
 			<h1>{{ current_blog.name }}</h1>
 		</header>	
 		<nav class="newPostBar">
-			Create new:
+			New:
 			<ul>
 				{% for post_type in current_blog.permitted_post_types.all %}
 				<li><a href="{% url create_post blog_slug=current_blog.slug post_type=post_type.model %}">{{ post_type.name }}</a></li>

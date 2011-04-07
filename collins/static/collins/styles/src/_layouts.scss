@@ -1,4 +1,24 @@
-.left-33 { width: 33%; float: left; }
-.right-33{ width: 33%; float: right; }
-.left-66 { width: 66%; float: left; }
-.right-66{ width: 66%; float: right;}
+$w33: $contentwidth / 3 - 1px;
+$w66: 2 * $contentwidth / 3 - 1px;
+$halfcolgut: $columngutter / 2;
+
+.left-33 {
+	width: $w33 - $columngutter;
+	padding: 0 $halfcolgut;
+	float: left;
+}
+.right-33{
+	width: $w33 - $columngutter;
+	padding: 0 $halfcolgut;
+	float: right;
+}
+.left-66 {
+	width: $w66 - $columngutter;
+	padding: 0 $halfcolgut;
+	float: left;
+}
+.right-66{
+	width: $w66 - $columngutter;
+	padding: 0 $halfcolgut;
+	float: right;
+}

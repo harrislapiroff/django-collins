@@ -8,7 +8,8 @@
 		"base",
 		"generalities",
 		"userActions",
-		"dashboard";
+		"dashboard",
+		"layouts";
 		
 html{
 	background: $sitebackground;
@@ -47,14 +48,14 @@ body{
 	}
 }
 #container{
-	width: 800px;
+	width: $pagewidth;
 	margin: 0 auto;
 	position: relative;
 }
 #content{
 	$radius: 5px;
 	@include border-radius($radius);
-	padding: 20px;
+	padding: $contentpadding;
 	margin: 20px 0;
 	@include box-shadow(rgba(0,0,0,.15), 0, 0, 20px, 0, false);
 	@include linear-gradient(color-stops(#DDD, #FFF 40px));
