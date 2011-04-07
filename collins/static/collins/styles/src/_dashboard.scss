@@ -1,0 +1,9 @@
+#content{
+	@include clearfix;
+}
+#activeBlog{
+	@extend .left-66
+}
+#yourBlogs{
+	@extend .right-33;
+}
