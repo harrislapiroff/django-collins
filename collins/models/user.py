@@ -5,8 +5,8 @@ from django.contrib.auth.models import User, UserManager
 from collins.models import Blog
 
 class UserProfile(models.Model):
-	user = models.ForeignKey(User, unique=True, related_name='Collins Profile')
-	last_managed_blog = models.ForeignKey(Blog, blank=True, null=True)
+	user = models.OneToOneField(User, related_name='collinsprofile')
+	last_managed_blog = models.ForeignKey(Blog, blank=True, null=True )
 	
 	def __unicode__(self):
 		name = self.user.get_full_name()
@@ -19,7 +19,7 @@ class UserProfile(models.Model):
 def update_user_profile(sender, **kwargs):
 	user = kwargs['instance']
 	try:
-		user.get_profile()
+		user.collinsprofile
 	except:
 		profile = UserProfile(user=user)
 		profile.save()

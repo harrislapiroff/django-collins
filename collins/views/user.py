@@ -28,7 +28,7 @@ def register(request):
 
 @login_required(login_url=COLLINS_LOGIN_URL)
 def dashboard(request):
-	profile = request.user.get_profile()
+	profile = request.user.collinsprofile
 	user_blogs = request.user.blogs.all()
 	current_blog = profile.last_managed_blog if profile.last_managed_blog else user_blogs[0] if user_blogs.count() != 0 else None
 	cx = {
@@ -80,7 +80,7 @@ def manage_blog_posts(request, blog_slug):
 	Changes the current user's profile.last_managed blog to the blog_slug
 	requested and redirects back to the dashboard.
 	"""
-	profile = request.user.get_profile()
+	profile = request.user.collinsprofile
 	blog = Blog.objects.filter(slug__exact=blog_slug)[0]
 	profile.last_managed_blog = blog
 	profile.save()
