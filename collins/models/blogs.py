@@ -10,7 +10,7 @@ class Blog(models.Model):
 	date_created = models.DateTimeField(auto_now_add=True)
 	
 	def __unicode__(self):
-		self.name
+		return self.name
 	
 	class Meta:
 		app_label = 'collins'
