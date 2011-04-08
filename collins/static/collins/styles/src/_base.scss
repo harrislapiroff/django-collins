@@ -12,11 +12,14 @@
 $font-family: Helvetica, Arial, sans-serif;
 $heading-font: "Expletus Sans", $font-family;
 
-$sitebackground: #C75407;
-$background-accent: #FFFA6F;
+$sitebackground: #C75407; /* orange */
+$sitebackground: #426742; /* green, I like better */
+$background-accent: #FFFA6F; /* sorta yellowish */
 $accent: #CF6;
+$accent2: #D82;
 
 $pagewidth:800px;
-$contentpadding:20px;
-$contentwidth: $pagewidth - 2 * $contentpadding;
+$contentpaddingh:10px;
+$contentpaddingv:20px;
+$contentwidth: $pagewidth - 2 * $contentpaddingh;
 $columngutter: 20px;

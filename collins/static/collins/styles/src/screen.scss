@@ -55,7 +55,7 @@ body{
 #content{
 	$radius: 5px;
 	@include border-radius($radius);
-	padding: $contentpadding;
+	padding: $contentpaddingv $contentpaddingh;
 	margin: 20px 0;
 	@include box-shadow(rgba(0,0,0,.15), 0, 0, 20px, 0, false);
 	@include linear-gradient(color-stops(#DDD, #FFF 40px));

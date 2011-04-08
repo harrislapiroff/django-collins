@@ -2,10 +2,12 @@
 	@include clearfix;
 }
 #activeBlog{
-	@extend .left-66
+	@extend .left-75;
+	border-right:1px solid rgba(0,0,0,.05);
 }
 #yourBlogs{
-	@extend .right-33;
+	@extend .right-25;
+	border-left:1px solid rgba(255,255,255, .5);
 }
 
 #activeBlog > header > h1{

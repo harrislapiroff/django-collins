@@ -1,24 +1,21 @@
-$w33: $contentwidth / 3 - 1px;
-$w66: 2 * $contentwidth / 3 - 1px;
-$halfcolgut: $columngutter / 2;
+@mixin column($frac, $side){
+	width: ($frac * $contentwidth) - ($columngutter + 1px);
+	display:table-cell;
+	vertical-align:top;
+	padding: 0 $columngutter / 2;
+}
 
-.left-33 {
-	width: $w33 - $columngutter;
-	padding: 0 $halfcolgut;
-	float: left;
+#content{
 }
-.right-33{
-	width: $w33 - $columngutter;
-	padding: 0 $halfcolgut;
-	float: right;
-}
-.left-66 {
-	width: $w66 - $columngutter;
-	padding: 0 $halfcolgut;
-	float: left;
-}
-.right-66{
-	width: $w66 - $columngutter;
-	padding: 0 $halfcolgut;
-	float: right;
-}
+
+.left-33 { @include column(1/3, left ) }
+.right-33{ @include column(1/3, right) }
+.left-66 { @include column(2/3, left ) }
+.right-66{ @include column(2/3, right) }
+
+.left-25 { @include column(1/4, left ) }
+.right-25{ @include column(1/4, right) }
+.left-75 { @include column(3/4, left ) }
+.right-75{ @include column(3/4, right) }
+.left-50 { @include column(1/2, left ) }
+.right-50{ @include column(1/2, right) }
