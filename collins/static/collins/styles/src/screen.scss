@@ -21,6 +21,7 @@ body{
 	$outside: $sitebackground;
 	font-family: $font-family;
 	font-size: 15px;
+	line-height:20px;
 	background: $sitebackground;
 	@include radial-gradient(color-stops($inside, $outside 850px));
 	background-attachment:fixed;

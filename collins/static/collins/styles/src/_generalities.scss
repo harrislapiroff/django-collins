@@ -1,5 +1,6 @@
 $selectionbg: adjust_hue(saturate($sitebackground, 100%), 60deg);
 $selectionfore: #FFF;
+$linkcolor: $accent2;
 
 ::selection{
 	background:$selectionbg;
@@ -12,7 +13,7 @@ $selectionfore: #FFF;
 
 a{
 	text-decoration:none;
-	color: $accent2;
+	color: $linkcolor;
 }
 
 b{
@@ -20,4 +21,19 @@ b{
 }
 i{
 	font-style:normal;
+}
+
+.message{
+	background: $sitebackground*.66 + $background-accent*.66;
+	padding:5px 10px;
+	@include border-radius(15px);
+	color:#000;
+	text-shadow:0 1px 0 rgba(255,255,255,.35);
+	@include box-shadow(rgba(0,0,0,.35), 0, 1px, 2px, 0, inset);
+	a{
+		color: #068;
+		&:hover{
+			text-decoration:underline;
+		}
+	}
 }

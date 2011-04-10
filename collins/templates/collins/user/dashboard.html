@@ -5,35 +5,35 @@
 {% block bodyclasses %}dashboard{% endblock %}
 
 {% block content %}
-	<div id="activeBlog">
-		<header>
-			<h1>{{ current_blog.name }}</h1>
-		</header>	
-		<nav class="newPostBar">
-			New:
-			<ul>
-				{% for post_type in current_blog.permitted_post_types.all %}
-				<li><a href="{% url create_post blog_slug=current_blog.slug post_type=post_type.model %}">{{ post_type.name }}</a></li>
-				{% endfor %}
-			</ul>
-		</nav>
-		<div class="postList">
-			{% if current_blog.get_posts.count != 0 %}
-				{% for post in current_blog.get_posts %}
-					<article>
-						<header>
-							<h1>{{ post.data.title }}</h1>
-						</header>
-						{{ post.data.content }}
-					</article>
-				{% endfor %}
-			{% else %}
-				<p class="message">This blog has no posts yet!</p>
-			{% endif %}
-		</div>
-	</div>
-
 	{% if blogs.count > 0 %}
+		<div id="activeBlog">
+			<header>
+				<h1>{{ current_blog.name }}</h1>
+			</header>	
+			<nav class="newPostBar">
+				New:
+				<ul>
+					{% for post_type in current_blog.permitted_post_types.all %}
+					<li><a href="{% url create_post blog_slug=current_blog.slug post_type=post_type.model %}">{{ post_type.name }}</a></li>
+					{% endfor %}
+				</ul>
+			</nav>
+			<div class="postList">
+				{% if current_blog.get_posts.count != 0 %}
+					{% for post in current_blog.get_posts %}
+						<article>
+							<header>
+								<h1>{{ post.data.title }}</h1>
+							</header>
+							{{ post.data.content }}
+						</article>
+					{% endfor %}
+				{% else %}
+					<p class="message">This blog has no posts yet!</p>
+				{% endif %}
+			</div>
+		</div>
+		
 		<div id="yourBlogs" class="blogList">
 			<ul class="blogSelector">
 				{% for blog in blogs %}
@@ -50,6 +50,11 @@
 			<a href="{% url create_blog %}"><span class="plus">+</span> New Blog</a>
 		</div>
 	{% else %}
-		<p>You have no blogs yet! Why not <a href="{% url create_blog %}">create one</a>?</p>
+		<div id="activeBlog">
+			<p class="message">You have no blogs yet! Why not <a href="{% url create_blog %}">create one</a>?</p>
+		</div>
+		<div id="yourBlogs" class="blogList">
+			<a href="{% url create_blog %}"><span class="plus">+</span> New Blog</a>
+		</div>
 	{% endif %}
 {% endblock %}
