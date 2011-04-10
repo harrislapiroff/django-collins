@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
+from collins.models.blogs import Blog
 from collins.decorators import post_type
 from collins import registry
 
