@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.contrib.contenttypes.models import ContentType
+from collins import registry
+from collins.models.themes import Theme
 
 class Blog(models.Model):
 	name = models.CharField(max_length=50)
@@ -11,6 +13,7 @@ class Blog(models.Model):
 	date_created = models.DateTimeField(auto_now_add=True)
 	# TODO: limit this to only ContentTypes which are subclasses of PostBase
 	permitted_post_types = models.ManyToManyField(ContentType)
+	theme = models.ManyToManyField(Theme)
 	
 	def get_posts(self):
 		return self.posts.objects.all()
