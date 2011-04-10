@@ -6,7 +6,7 @@ from django.contrib.auth import login, authenticate
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from collins.models import Blog, User
-from collins.forms import CreateBlogForm
+from collins.forms import CreateBlogForm, PostShellForm
 from collins.settings import COLLINS_USER_REGISTRATION, COLLINS_LOGIN_URL
 
 def register(request):
@@ -39,8 +39,8 @@ def dashboard(request):
 
 @login_required(login_url=COLLINS_LOGIN_URL)
 def create_post(request, blog_slug, post_type):
-	# TODO: implement
-	return render_to_response('collins/user/home.html', {}, context_instance=RequestContext(request))
+	form = PostShellForm()
+	return render_to_response('collins/user/form.html', {'form': form, 'button_text': 'Create Post'}, context_instance=RequestContext(request))
 
 
 @login_required(login_url=COLLINS_LOGIN_URL)
