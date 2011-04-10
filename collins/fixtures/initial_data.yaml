@@ -1,0 +1,7 @@
+- model: collins.theme
+  fields:
+    title: Collins Default
+    author: 1
+    template: '{% extend "collins/themes/default.html" %}'
+    public: true
+  pk: 1

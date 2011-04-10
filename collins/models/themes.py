@@ -8,5 +8,9 @@ class Theme(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	public = models.BooleanField()
+	
+	def __unicode__(self):
+		return self.title if self.title else self.author.collinsprofile.__unicode__()
+	
 	class Meta:
 		app_label = 'collins'
