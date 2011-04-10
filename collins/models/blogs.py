@@ -13,7 +13,7 @@ class Blog(models.Model):
 	date_created = models.DateTimeField(auto_now_add=True)
 	# TODO: limit this to only ContentTypes which are subclasses of PostBase
 	permitted_post_types = models.ManyToManyField(ContentType)
-	theme = models.ManyToManyField(Theme)
+	theme = models.ForeignKey(Theme)
 	
 	def get_posts(self):
 		return self.posts.objects.all()
