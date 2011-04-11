@@ -44,15 +44,25 @@ body{
 		float:left;
 		color:inherit;
 		line-height:60px;
-		padding: 10px 10px 0 10px;
+		padding:{
+			top:10px;
+			bottom:0;
+			left:20px;
+			right:20px;
+		}
 		margin:{
 			top:-10px;
 		}
 		@include border-radius(5px);
 		&:hover{
-			color:$accent;
-			text-shadow: 0 -1px 0 rgba(0,0,0,.25);
-			background: rgba(0,0,0,.25);
+			// color:$accent;
+			// text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+			background: rgba(0,0,0,.15);
+			@include box-shadow(rgba(0,0,0,.2),0,1px,2px,0,inset);
+		}
+		&:active{
+		background: rgba(0,0,0,.25);
+		@include box-shadow(rgba(0,0,0,.2),0,1px,2px,1px,inset);
 		}
 	}
 }
