@@ -15,9 +15,10 @@ class CreateBlogForm(BlogForm):
 		exclude = ('admins', )
 
 
-class PostForm(forms.ModelForm):
+class BasePostForm(forms.ModelForm):
 	pass
 	
 class PostShellForm(forms.ModelForm):
 	class Meta:
 		model = PostShell
+		exclude = ('post_content_type', 'post_content_id', 'blog', 'author')

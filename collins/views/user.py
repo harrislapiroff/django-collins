@@ -1,12 +1,15 @@
+from django.db.models.loading import AppCache
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from collins.models import Blog, User
-from collins.forms import CreateBlogForm, PostShellForm
+from collins.forms import CreateBlogForm, PostShellForm, BasePostForm
+from django.forms.models import modelform_factory
 from collins.settings import COLLINS_USER_REGISTRATION, COLLINS_LOGIN_URL
 
 def register(request):
@@ -39,8 +42,28 @@ def dashboard(request):
 
 @login_required(login_url=COLLINS_LOGIN_URL)
 def create_post(request, blog_slug, post_type):
-	form = PostShellForm()
-	return render_to_response('collins/user/form.html', {'form': form, 'button_text': 'Create Post'}, context_instance=RequestContext(request))
+	post_content_type = ContentType.objects.get(model=post_type)
+	post_model = post_content_type.model_class()
+	PostForm = modelform_factory(post_model)
+
+	if request.method == 'POST':
+		shell_form = PostShellForm(request.POST)
+		post_form = PostForm(request.POST)
+		if post_form.is_valid() and shell_form.is_valid():
+			post = post_form.save()
+			post_shell = post_form.save(commit=False)
+			post_shell.post_content_type = post_content_type
+			post_shell.post_content_id = post.id
+			post_shell.author = request.user
+			post_shell.blog = request.user.collinsprofile.last_managed_blog
+			post_shell.save()
+			return HttpResponseRedirect(reverse('dashboard'))
+		else:
+			return render_to_response('collins/user/postform.html', {'shell_form': shell_form, 'post_form': post_form, 'button_text': 'Create Post'}, context_instance=RequestContext(request))
+	else:
+		shell_form = PostShellForm()
+		post_form = PostForm()
+		return render_to_response('collins/user/postform.html', {'shell_form': shell_form, 'post_form': post_form, 'button_text': 'Create Post'}, context_instance=RequestContext(request))
 
 
 @login_required(login_url=COLLINS_LOGIN_URL)
