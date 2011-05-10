@@ -53,7 +53,7 @@ def create_post(request, blog_slug, post_type):
 	PostForm = registry[post_model]
 
 	if request.method == 'POST':
-		shell_form = PostShellForm(request.POST)
+		shell_form = PostShellForm(request.POST, prefix='shell')
 		post_form = PostForm(request.POST)
 		if post_form.is_valid() and shell_form.is_valid():
 			post = post_form.save()
@@ -67,7 +67,7 @@ def create_post(request, blog_slug, post_type):
 		else:
 			return render_to_response('collins/user/postform.html', {'shell_form': shell_form, 'post_form': post_form, 'button_text': 'Create Post'}, context_instance=RequestContext(request))
 	else:
-		shell_form = PostShellForm()
+		shell_form = PostShellForm(prefix='shell')
 		post_form = PostForm()
 		return render_to_response('collins/user/postform.html', {'shell_form': shell_form, 'post_form': post_form, 'button_text': 'Create Post'}, context_instance=RequestContext(request))
 
