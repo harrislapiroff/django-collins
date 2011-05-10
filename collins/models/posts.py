@@ -1,10 +1,13 @@
 from django.db import models
+from django.forms.models import modelform_factory
 from django.contrib.auth.models import User
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
-from collins.models.blogs import Blog
-from collins.decorators import post_type
+from django.contrib.contenttypes.models import ContentType
+
 from collins import registry
+from collins.decorators import post_type
+from collins.models.blogs import Blog
+
 
 class PostShell(models.Model):
 	time_posted = models.DateTimeField(auto_now_add=True)
@@ -31,14 +34,18 @@ class PostShell(models.Model):
 	class Meta:
 		app_label = 'collins'
 
+
 class PostBase(models.Model):
 	title = models.CharField(max_length=255, blank=True, null=True)
 	shell = generic.GenericRelation(PostShell, content_type_field = 'post_content_type', object_id_field = 'post_content_id')
-
-	@property
-	def published(self):
-		return self.time_posted
 	
+	def published(self):
+		return self.shell.all()[0].time_posted
+		
+	@classmethod
+	def get_form(cls):
+		return modelform_factory(cls)
+
 	def __unicode__(self):
 		title_bits = []
 		shell = self.shell.all()[0]
@@ -58,20 +65,24 @@ class PostBase(models.Model):
 		abstract = True
 		app_label = 'collins'
 
+
 @post_type
 class TextPost(PostBase):
 	content = models.TextField()
-	
+
+
 @post_type
 class QuotePost(PostBase):
 	content = models.TextField()
 	quote_author = models.CharField(max_length=75)
 	description = models.TextField(blank=True, null=True)
 
+
 @post_type
 class LinkPost(PostBase):
 	url = models.URLField()
 	description = models.TextField(blank=True, null=True)
+
 
 @post_type
 class ImagePost(PostBase):
@@ -79,25 +90,30 @@ class ImagePost(PostBase):
 	image = models.ImageField(upload_to='images')
 	description = models.TextField(blank=True, null=True)
 
+
 @post_type
 class ChatPost(PostBase):
 	chat = models.TextField()
 	description = models.TextField(blank=True, null=True)
+
 
 @post_type
 class AudioPost(PostBase):
 	audio = models.FileField(upload_to='audio')
 	description = models.TextField(blank=True, null=True)
 
+
 @post_type
 class VideoFilePost(PostBase):
 	video = models.FileField(upload_to='video')
 	description = models.TextField(blank=True, null=True)
 
+
 @post_type
 class VideoExternalPost(PostBase):
 	embed_code = models.TextField()
 	description = models.TextField(blank=True, null=True)
+
 
 @post_type
 class CodePost(PostBase):

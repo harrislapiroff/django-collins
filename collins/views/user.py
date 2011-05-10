@@ -50,7 +50,7 @@ def dashboard(request):
 def create_post(request, blog_slug, post_type):
 	post_content_type = ContentType.objects.get(model=post_type)
 	post_model = post_content_type.model_class()
-	PostForm = registry[post_model]
+	PostForm = post_model.get_form()
 
 	if request.method == 'POST':
 		shell_form = PostShellForm(request.POST, prefix='shell')
