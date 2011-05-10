@@ -11,12 +11,18 @@
 				<h1>{{ current_blog.name }}</h1>
 			</header>	
 			<nav class="newPostBar">
+				{% if current_blog.permitted_post_types.count == 1 %}
+					{% with current_blog.permitted_post_types.all.0 as post_type %}
+						<a class="solitary" href="{% url create_post blog_slug=current_blog.slug post_type=post_type.model %}">New {{ post_type.name }}</a>
+					{% endwith %}
+				{% else %}
 				New:
 				<ul>
 					{% for post_type in current_blog.permitted_post_types.all %}
 					<li><a href="{% url create_post blog_slug=current_blog.slug post_type=post_type.model %}">{{ post_type.name }}</a></li>
 					{% endfor %}
 				</ul>
+				{% endif %}
 			</nav>
 			<div class="postList">
 				{% if current_blog.get_posts.count != 0 %}
