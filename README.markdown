@@ -6,7 +6,7 @@ Doesn't really do much yet. Still in the early stages of development.
 
 ## Prerequisites
 
-* [Python](http://python.org/) (May well work with older versions, but is developed against 2.6.1)
+* [Python](http://python.org/) (2.6 required for the [@post_type](https://github.com/lapilofu/django-collins/blob/master/collins/decorators.py#L4) [class decorator](http://www.python.org/dev/peps/pep-3129/). Earlier versions should work if you are not using the decorator.)
 * [Django 1.3+](http://www.djangoproject.com/)
 * (Optional) [django-south](http://south.aeracode.org/)
 
