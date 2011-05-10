@@ -1,6 +1,5 @@
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
-from django.forms.models import modelform_factory
 import operator
 
 
@@ -16,13 +15,11 @@ class PostTypeRegistry(object):
 	def __init__(self):
 		self._registry = {}
 
-	def register(self, model, form=None):
-		if not form:
-			form = modelform_factory(model)
+	def register(self, model):
 		if model in self._registry:
 			raise AlreadyRegistered('Post type %s is already registered.' % model)
 
-		self._registry[model] = form
+		self._registry[model] = model
 
 	def unregister(self, model):
 		if model not in self._registry:
@@ -44,7 +41,7 @@ class PostTypeRegistry(object):
 		Returns a Q object for looking up content types of all post types.
 		Comes in handy, especially in "limit_choices_to" on models.
 		"""
-		qs = [Q(model__iexact=model.__name__) for (model, form) in self.items()]
+		qs = [Q(model__iexact=model.__name__) for (key, model) in self.items()]
 		# http://www.djangozen.com/blog/the-power-of-q
 		return reduce(operator.or_, qs)
 		
