@@ -7,10 +7,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, HttpResponseForbidden
-from collins.models import Blog, User
-from collins.forms import CreateBlogForm, PostShellForm, BasePostForm
 from django.forms.models import modelform_factory
+
+
+from collins.models import Blog, User
+from collins.forms import CreateBlogForm, PostShellForm
 from collins.settings import COLLINS_USER_REGISTRATION, COLLINS_LOGIN_URL
+from collins import registry
+
 
 def register(request):
 	if not COLLINS_USER_REGISTRATION:
@@ -29,6 +33,7 @@ def register(request):
 			login(request, user)
 			return HttpResponseRedirect(reverse('create_blog'))
 
+
 @login_required(login_url=COLLINS_LOGIN_URL)
 def dashboard(request):
 	profile = request.user.collinsprofile
@@ -40,11 +45,12 @@ def dashboard(request):
 	}
 	return render_to_response('collins/user/dashboard.html', cx, context_instance=RequestContext(request))
 
+
 @login_required(login_url=COLLINS_LOGIN_URL)
 def create_post(request, blog_slug, post_type):
 	post_content_type = ContentType.objects.get(model=post_type)
 	post_model = post_content_type.model_class()
-	PostForm = modelform_factory(post_model)
+	PostForm = registry[post_model]
 
 	if request.method == 'POST':
 		shell_form = PostShellForm(request.POST)
@@ -71,6 +77,7 @@ def edit_post(request, post_pk):
 	# TODO: implement
 	return render_to_response('collins/user/home.html', {}, context_instance=RequestContext(request))
 
+
 @login_required(login_url=COLLINS_LOGIN_URL)
 def create_blog(request):
 	# if the form has been submitted
@@ -96,6 +103,7 @@ def create_blog(request):
 @login_required(login_url=COLLINS_LOGIN_URL)
 def edit_blog(request, blog_slug):
 	pass
+
 
 @login_required(login_url=COLLINS_LOGIN_URL)
 def manage_blog_posts(request, blog_slug):
