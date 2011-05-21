@@ -4,8 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 
-from collins import registry
-from collins.decorators import post_type
+from collins import registry as post_types
 from collins.models.blogs import Blog
 
 
@@ -66,56 +65,57 @@ class PostBase(models.Model):
 		app_label = 'collins'
 
 
-@post_type
 class TextPost(PostBase):
 	content = models.TextField()
 
 
-@post_type
 class QuotePost(PostBase):
 	content = models.TextField()
 	quote_author = models.CharField(max_length=75)
 	description = models.TextField(blank=True, null=True)
 
 
-@post_type
 class LinkPost(PostBase):
 	url = models.URLField()
 	description = models.TextField(blank=True, null=True)
 
 
-@post_type
 class ImagePost(PostBase):
 	url = models.URLField()
 	image = models.ImageField(upload_to='images')
 	description = models.TextField(blank=True, null=True)
 
 
-@post_type
 class ChatPost(PostBase):
 	chat = models.TextField()
 	description = models.TextField(blank=True, null=True)
 
 
-@post_type
 class AudioPost(PostBase):
 	audio = models.FileField(upload_to='audio')
 	description = models.TextField(blank=True, null=True)
 
 
-@post_type
 class VideoFilePost(PostBase):
 	video = models.FileField(upload_to='video')
 	description = models.TextField(blank=True, null=True)
 
 
-@post_type
 class VideoExternalPost(PostBase):
 	embed_code = models.TextField()
 	description = models.TextField(blank=True, null=True)
 
 
-@post_type
 class CodePost(PostBase):
 	code = models.TextField()
 	description = models.TextField(blank=True, null=True)
+
+post_types.register(TextPost)
+post_types.register(QuotePost)
+post_types.register(LinkPost)
+post_types.register(ImagePost)
+post_types.register(ChatPost)
+post_types.register(AudioPost)
+post_types.register(VideoFilePost)
+post_types.register(VideoExternalPost)
+post_types.register(CodePost)
