@@ -3,10 +3,16 @@ from django.forms.models import modelform_factory
 from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
+from django.template.loader import select_template
+from django.template import Context
 
 from collins import registry as post_types
 from collins.models.blogs import Blog
 
+
+class PostManager(models.manager.Manager):
+	def published(self):
+		return self.exclude(draft=True)
 
 class PostShell(models.Model):
 	time_posted = models.DateTimeField(auto_now_add=True)
@@ -17,13 +23,18 @@ class PostShell(models.Model):
 	post_content_type = models.ForeignKey(ContentType)
 	post_content_id = models.IntegerField()
 	post_content_object = generic.GenericForeignKey('post_content_type', 'post_content_id')
+
+	objects = PostManager()
 	
 	def typename(self):
 		return type(self).__name__
 	
-	def data(self):
-		return self.post_content_object
-	
+	def as_html(self):
+		tpl_name = self.post_content_object.__class__.__name__.lower() + '.html'
+		tpl = select_template([tpl_name, 'collins/posts/default.html'])
+		ctx = Context({'post': self.post_content_object})
+		return tpl.render(ctx)
+		
 	def __unicode__(self):
 		return u"%s (%s)" % (
 			self.post_content_object.__unicode__(),

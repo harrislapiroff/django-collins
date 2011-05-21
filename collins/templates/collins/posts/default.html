@@ -1,0 +1,9 @@
+{% extends "collins/posts/__base.html" %}
+
+{% block content %}
+	<header>
+		<h1>{{ post.title }}</h1>
+	</header>
+
+	{{ post.content }}
+{% endblock %}

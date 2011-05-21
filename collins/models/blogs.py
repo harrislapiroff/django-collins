@@ -16,7 +16,7 @@ class Blog(models.Model):
 	theme = models.ForeignKey(Theme, default=1)
 	
 	def get_posts(self):
-		return self.posts.objects.all()
+		return self.posts.published()
 	
 	def __unicode__(self):
 		return self.name

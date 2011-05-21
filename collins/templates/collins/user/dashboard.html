@@ -27,12 +27,7 @@
 			<div class="postList">
 				{% if current_blog.get_posts.count != 0 %}
 					{% for post in current_blog.get_posts %}
-						<article>
-							<header>
-								<h1>{{ post.data.title }}</h1>
-							</header>
-							{{ post.data.content }}
-						</article>
+						{{ post.as_html }}
 					{% endfor %}
 				{% else %}
 					<p class="message">This blog has no posts yet!</p>
