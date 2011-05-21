@@ -20,16 +20,16 @@ class PostShell(models.Model):
 	
 	def typename(self):
 		return type(self).__name__
-
+	
 	def data(self):
 		return self.post_content_object
-
+	
 	def __unicode__(self):
 		return u"%s (%s)" % (
 			self.post_content_object.__unicode__(),
 			self.post_content_type.name
 		)
-
+	
 	class Meta:
 		app_label = 'collins'
 
@@ -40,11 +40,11 @@ class PostBase(models.Model):
 	
 	def published(self):
 		return self.shell.all()[0].time_posted
-		
+	
 	@classmethod
 	def get_form(cls):
 		return modelform_factory(cls)
-
+	
 	def __unicode__(self):
 		title_bits = []
 		shell = self.shell.all()[0]
@@ -109,6 +109,7 @@ class VideoExternalPost(PostBase):
 class CodePost(PostBase):
 	code = models.TextField()
 	description = models.TextField(blank=True, null=True)
+
 
 post_types.register(TextPost)
 post_types.register(QuotePost)
