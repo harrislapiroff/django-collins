@@ -57,7 +57,7 @@ def create_post(request, blog_slug, post_type):
 		post_form = PostForm(request.POST)
 		if post_form.is_valid() and shell_form.is_valid():
 			post = post_form.save()
-			post_shell = post_form.save(commit=False)
+			post_shell = shell_form.save(commit=False)
 			post_shell.post_content_type = post_content_type
 			post_shell.post_content_id = post.id
 			post_shell.author = request.user
