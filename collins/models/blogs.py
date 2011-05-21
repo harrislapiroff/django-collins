@@ -11,7 +11,7 @@ class Blog(models.Model):
 	description = models.TextField(blank=True, null=True)
 	admins = models.ManyToManyField(User, related_name='blogs')
 	date_created = models.DateTimeField(auto_now_add=True)
-	# TODO: limit this to only ContentTypes which are subclasses of PostBase
+	# TODO: limit this to only ContentTypes which are registered as PostBase
 	permitted_post_types = models.ManyToManyField(ContentType)
 	theme = models.ForeignKey(Theme, default=1)
 	
